@@ -32,7 +32,7 @@ $('.center').slick({
 // insta feed
 $(document).ready(function() {
     $.instagramFeed({
-        'username': 'katalogcressidaofficial',
+        'username': 'cressidabeauty',
         'container': "#instagram-feed",
         'display_profile': false,
         'display_biography': false,

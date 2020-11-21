@@ -508,6 +508,59 @@
     font-weight: 900;
 }
 
+/* login */
+.login-title {
+    font-family: 'Lato', sans-serif;
+    color: #825146;
+    font-weight: 900;
+}
+
+.login-form-text-color {
+    font-family: 'Lato', sans-serif;
+    color: #825146;
+}
+
+.hr-login-form-title {
+    border: 2px solid  #825146;
+    width: 50px;
+    margin-top: -3px;
+}
+
+.reglog-text:hover {
+    color: #825146 !important;
+}
+
+.form-control {
+    color:  #825146 !important;
+    box-shadow: none !important;
+}
+
+.form-control:focus{
+    border-color: #825146 !important;
+}
+
+::placeholder {
+    color: #825146 !important;
+    opacity: 0.7 !important;
+}
+
+.myrow {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px !important;
+}
+
+.btn {
+    box-shadow: none !important;
+}
+
+.btn-brown-login {
+    background-color: #825146 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
 @media (max-width: 767px) {
     .glow {
         display: none;
