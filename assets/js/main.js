@@ -64,5 +64,15 @@ function back() {
     window.history.back();
 }
 
-var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
-document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+// more info glow
+var i = 0;
+function increaseItem() {
+    document.getElementById('additem').value = ++i;
+}
+function decreaseItem() {
+    if (i > 0){
+        document.getElementById('additem').value = --i;
+    } else {
+        document.getElementById('additem').value = i;
+    }
+}

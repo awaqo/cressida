@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lip Glow - Cressida Beauty</title>
+    <title>More Info - Cressida Beauty</title>
     <link rel="icon" href="../assets/img/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../assets/slick/slick-theme.css"/>
 </head>
 <body>
-    <div class="content-1">
+    <div class="content-2">
         <!-- header start -->
         <div class="text-center pt-4">
             <svg width="50" height="42" viewBox="0 0 31 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
                 <circle cx="28.5" cy="10.5" r="2.5" fill="#805146"/>
             </svg>    
         </div>
-        <nav class="px-5 navbar navbar-expand-md sticky-top navbar-light bg-header">
+        <nav class="px-5 navbar navbar-expand-md sticky-top navbar-light bg-header-about">
             <div class="container">
                 <button style="margin-left: -20px" class="navbar-toggler mr-auto p-0 border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -101,127 +101,66 @@
         </nav>
         <!-- header end -->
 
-        <!-- img header start -->
-        <div class="mt-5 p-0 img-header"></div>
-        <!-- img header end -->
-
-        <!-- content sectiton 1 start -->
-        <section class="jumbotron container-1" style="padding-bottom: 0px !important;">
+        <!-- container section 1 start -->
+        <section class="jumbotron container-moreinfo">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 my-1">
-                        <div class="col-md-6 p-0 mx-auto">
-                            <h1 class="lipglow-bigtext text-capitalize" style="margin-top: 90px;">cressida<br>lip glow</h1>
-                            <h4 class="mt-4 lipglow-subtitle">Your Time to Glow</h4>
+                <div class="col-md-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 my-2">
+                            <div class="row">
+                                <div class="items mr-2">
+                                    <div class="box active-items d-flex justify-content-center mb-1">
+                                        <img class="img-fluid items-img" src="../assets/img/moreinfo-lipglow.png" alt="">
+                                    </div>
+                                    <div class="box d-flex justify-content-center my-1">
+                                        <img class="img-fluid items-img" src="../assets/img/lipglow-orang-boudicca.png" alt="" style="width: max-content;">
+                                    </div>
+                                    <div class="box my-1"></div>
+                                </div>
+                                <img class="img-fluid" src="../assets/img/moreinfo-lipglow.png" alt="">
+                            </div>
                         </div>
-                        <div class="col-md-6 mx-auto p-0">
-                            <p class="mt-4 lipglow-text">Let’s be a part of #GlowSquad! We stay in
-                                constant communication that each of our
-                                products are made to reach every single one
-                                of you inclusively, because we believe that
-                                beauty is for everybody and we believe in
-                                your own version of beautiful.
-                            </p>
+                        <div class="col-md-6 my-1">
+                            <div class="item-name">Boudicca Lip Glow</div>
+                            <div class="small-text">Cressida Lip Glow | 50 ml</div>
+                            <div class="item-subtitle mt-2">Silky-sheer lip glow enriched with Rice Bran Oil, Lavender Oil, and
+                                Chamomile Oil. Gives a whimsical-magical natural lookv</div>
+
+                            <div class="item-subtitle mt-2">WHAT IT IS: <span class="item-desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span></div>
+                            
+                            <div class="item-subtitle mt-3">WHY IT’S SPECIAL:</div>
+                            <div class="item-desc">
+                                <ul>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="item-subtitle mt-4">BENEFITS FOR YOU:</div>
+                            <div class="item-desc">
+                                <ul>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                                </ul>
+                            </div>
+                            <div class="row mt-4 ml-1">
+                                <div class="container-add-item px-2 my-1">
+                                    <a class="dec-inc" onclick="decreaseItem()">-</a>
+                                    <input type="text" id="additem" value="1"/>
+                                    <a class="dec-inc" onclick="increaseItem()">+</a>
+                                </div>
+                                <a href="#" class="btn rounded-0 btn-brown-add-item my-1">Add To Bag - Rp145.000</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 my-1" style="z-index: 2;">
-                        <img class="img-fluid" width="420" src="../assets/img/lipglow-foto1.png" alt="">
-                    </div>
-                </div>
-
-                <!-- img lipstick blur -->
-                <div class="col-md-10 mx-auto d-flex justify-content-center" style="margin-top: -70px; z-index: 1;">
-                    <img src="../assets/img/lipblur.png" class="img-fluid" width="800" alt="">
-                </div>
-
-                <!-- all shade -->
-                <h2 class="mt-4 text-center allshade-title">All Shade in All Your Glow</h2>
-                <div class="col-md-5 pr-0 mx-auto allshade-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                </div>
-                <div class="mt-5 col-md-10 p-0 d-flex justify-content-center mx-auto">
-                    <img class="img-fluid" width="870" src="../assets/img/lipglow-foto2.png" alt="">
                 </div>
             </div>
         </section>
-        <!-- section 1 end -->
-
-        <!-- section 2 start -->
-        <section class="jumbotron container-2" style="background-color: #F1E5CB !important;">
-            <div class="col-md-9 mt-5 mx-auto">
-                <div class="row mx-auto justify-content-center">
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-boudicca.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">BOUDICCA LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-boudicca.png" alt="">
-
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-harriet.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">HARRIET LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-harriet.png" alt="">
-                    
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-stargazer.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">STARGAZER LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-stargazer.png" alt="">
-                    
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-keva.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">KEVA LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-keva.png" alt="">
-
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-phantom.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">PHANTOM LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-phantom.png" alt="">
-
-                    <div class="card lipglow-card-2 border-0 rounded-0 px-0 my-2">
-                        <div class="img-product-lipglow">
-                            <img src="../assets/img/lipglow-ruby.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                            <p class="card-title product-text-title-1">RUBY LIP GLOW</p>
-                        </div>
-                        <a href="moreinfo-lipglow.html" class="btn btn-product-1 rounded-0 btn-block">MORE INFOGLOW</a>
-                    </div>
-                    <img class="py-2 mr-4" src="../assets/img/lipglow-orang-ruby.png" alt="">
-                </div>
-            </div>
-            <h5 class="col-md-5 timetoglow-quote mx-auto text-center mt-5">It's your time to glow and radiate your inner beauty
-                Yes, cause #YouGlowGirl
-            </h5>
-        </section>
-        <!-- section 2 end -->
+        <!-- container section 1 end -->
 
         <!-- content section 3 / footer start -->
         <div class="jumbotron container-6 rounded-0">
@@ -241,10 +180,10 @@
                 <div class="row justify-content-center mt-3">
                     <a href="../home.html" class="footer-menu-text mx-4">HOME</a>
                     <a href="allproducts.html" class="footer-menu-text mx-4">ALL PRODUCTS</a>
-                    <a href="lipglow.html" class="footer-menu-text mx-4 font-weight-bold">LIP GLOW</a>
+                    <a href="lipglow.html" class="footer-menu-text mx-4">LIP GLOW</a>
                     <a href="lipglow.html" class="footer-menu-text mx-4">PALLETE</a>
                     <a href="cressidairl.html" class="footer-menu-text mx-4">CRESSIDA URL</a>
-                    <a href="about.html" class="footer-menu-text mx-4">ABOUT</a>
+                    <a href="about.html" class="footer-menu-text mx-4 font-weight-bold">ABOUT</a>
                 </div>
                 <div class="col-md-6 mx-auto text-center email-text mt-4">We also make emails.<br>Receive email updates on stuff you’ll probably want to know about, including products, launches, and events.</div>
                 <form action="" class="col-md-6 border container-input mx-auto bg-white mt-3">
