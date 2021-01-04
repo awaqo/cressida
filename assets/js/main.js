@@ -76,3 +76,12 @@ function decreaseItem() {
         document.getElementById('additem').value = i;
     }
 }
+
+function login() {
+    Swal.fire({
+    title: 'Login',
+    text: "Successfully Logged in",
+    icon: 'success',
+    timer: 1000
+    })
+}
