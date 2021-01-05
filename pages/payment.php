@@ -17,6 +17,9 @@ $name = $_SESSION["user"]["name"];
 $sql_items = "SELECT * FROM transaksi WHERE username='$name' ORDER BY id ASC";
 $result_items = mysqli_query($con, $sql_items);
 
+$ongkir = 0;
+$kurir = 'Choose your delivery Services';
+
 if(!empty($_GET["action"])) {
     switch($_GET["action"]) {
         case "remove":
@@ -28,6 +31,20 @@ if(!empty($_GET["action"])) {
             location="payment.php";
             </script>';
         break;
+
+        case "ongkir":
+            if($_GET["cour"] == 'JNE') {
+                $ongkir = 16000;
+                $kurir = 'JNE Express';
+            }
+            else if($_GET["cour"] == 'JnT') {
+                $ongkir = 14000;
+                $kurir = 'J&T Express';
+            }
+            else if($_GET["cour"] == 'SCPT') {
+                $ongkir = 15000;
+                $kurir = 'SiCepat Express';
+            }
     }
 }
 
@@ -129,11 +146,28 @@ if(!empty($_GET["action"])) {
                         </div>
                         <hr>
                         <div class="form-group">
-                            <div class="font">JNE Express</div>
+                        
+                            <div class="dropdown no-arrow">
+                                <a class="form-control dropdown-toggle text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php echo $kurir ?>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="payment.php?action=ongkir&cour=JNE">JNE Express => Rp 16.000</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="payment.php?action=ongkir&cour=JnT">J&T Express => Rp 14.000</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="payment.php?action=ongkir&cour=SCPT">SiCepat Express => Rp 15.000</a>
+                                </div>
+                            </div>
+                                <!-- <select class="form-control">
+                                    <a href="payment.php?action=chooseOngkir">JNE Express RP 16000</a>
+                                    <option><a href="payment.php?action=chooseOngkir">JNE Express RP 16000</a></option>
+                                    <option>J&T Express RP 14000</option>
+                                    <option>Si Cepat RP 15000</option>
+                                </select> -->
+                            <!-- <div class="font">JNE Express</div> -->
                         </div>
-                        <?php 
-                        $ongkir = 14000;
-                        ?>
                         <div class="d-flex justify-content-between">
                             <div class="font">Total : </div>
                             <div class="font">Rp <?php echo number_format($ongkir) ?></div>
