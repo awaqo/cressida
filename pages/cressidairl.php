@@ -74,14 +74,27 @@ session_start();
                         </li>
                     </ul>
                     <div class="navbar-nav ml-auto">
-                        <a href="cart.php" class="nav-link">
+                    <?php 
+                        if(!isset($_SESSION["user"])) {
+                            echo '<a href="../log-reg/login.php" class="nav-link">
                             <svg width="18" height="18" viewBox="0 0 42 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: -7px;">
                                 <path d="M21.0794 2C14.6794 2 14.0794 8.33333 14.5794 11.5H27.5796C28.0795 8.33333 27.4794 2 21.0794 2Z" stroke="#805146" stroke-width="3"/>
                                 <path d="M7.0798 12H33.5798C44.78 12 39.2464 16.3333 35.0796 18.5V29.5C35.0796 36 33.0796 37 28.5796 37H11.5796C7.57959 36.2 6.91306 31.6667 7.0798 29.5V18.5C-2.1202 13.3 3.24646 12 7.0798 12Z" stroke="#805146" stroke-width="3"/>
                                 <rect x="13.0796" y="18.5" width="4" height="4" fill="#805146"/>
                                 <rect x="25.0796" y="18.5" width="4" height="4" fill="#805146"/>
                             </svg>
-                        </a>
+                        </a>';
+                        } else {
+                            echo '<a href="payment.php" class="nav-link">
+                            <svg width="18" height="18" viewBox="0 0 42 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: -7px;">
+                                <path d="M21.0794 2C14.6794 2 14.0794 8.33333 14.5794 11.5H27.5796C28.0795 8.33333 27.4794 2 21.0794 2Z" stroke="#805146" stroke-width="3"/>
+                                <path d="M7.0798 12H33.5798C44.78 12 39.2464 16.3333 35.0796 18.5V29.5C35.0796 36 33.0796 37 28.5796 37H11.5796C7.57959 36.2 6.91306 31.6667 7.0798 29.5V18.5C-2.1202 13.3 3.24646 12 7.0798 12Z" stroke="#805146" stroke-width="3"/>
+                                <rect x="13.0796" y="18.5" width="4" height="4" fill="#805146"/>
+                                <rect x="25.0796" y="18.5" width="4" height="4" fill="#805146"/>
+                            </svg>
+                        </a>';
+                        }
+                    ?>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-user-circle" style="color: #805146; font-size: 18px;"></i>

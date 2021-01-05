@@ -182,10 +182,13 @@ $result_items = mysqli_query($con, $sql_items);
                                 <div class="img-product">
                                     <img src="../admin/post/items/upload/<?= $image ?>" width="200" class="img-fluid" alt="">
                                 </div>
-                                <div class="card-body bg-card-body-1 text-center p-0">
-                                    <div class="card-title product-text-title-1 pt-1"><?php echo $data_items['item_name'] ?></div>
+                                <div class="card-body px-1 bg-card-body-1">
+                                    <hr>
+                                </div>
+                                <div class="card-body bg-card-body-1 px-3 py-2">
+                                    <h3 class="card-title product-text-title-1 pt-1"><?php echo $data_items['item_name'] ?></h3>
                                     <div class="product-text-exp-1"><?php echo $data_items['item_subname'] ?></div>
-                                    <div class="product-text-exp-1 mt-1 pb-1"><b>Rp <?php echo $data_items['item_price'] ?></b></div>
+                                    <div class="product-text-price mt-2 pb-1"><b>Rp <?php echo number_format($data_items['item_price']) ?></b></div>
                                 </div>
                             </a>
                             <!-- <a href="#" class="btn btn-product-1 rounded-0 btn-block">Add To Bag - Rp145.000</a> -->

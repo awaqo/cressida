@@ -88,14 +88,27 @@ $result_items = mysqli_query($con, $sql_items);
                         </li>
                     </ul>
                     <div class="navbar-nav ml-auto">
-                        <a href="cart.php" class="nav-link">
+                    <?php 
+                        if(!isset($_SESSION["user"])) {
+                            echo '<a href="../log-reg/login.php" class="nav-link">
                             <svg width="18" height="18" viewBox="0 0 42 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: -7px;">
                                 <path d="M21.0794 2C14.6794 2 14.0794 8.33333 14.5794 11.5H27.5796C28.0795 8.33333 27.4794 2 21.0794 2Z" stroke="#805146" stroke-width="3"/>
                                 <path d="M7.0798 12H33.5798C44.78 12 39.2464 16.3333 35.0796 18.5V29.5C35.0796 36 33.0796 37 28.5796 37H11.5796C7.57959 36.2 6.91306 31.6667 7.0798 29.5V18.5C-2.1202 13.3 3.24646 12 7.0798 12Z" stroke="#805146" stroke-width="3"/>
                                 <rect x="13.0796" y="18.5" width="4" height="4" fill="#805146"/>
                                 <rect x="25.0796" y="18.5" width="4" height="4" fill="#805146"/>
                             </svg>
-                        </a>
+                        </a>';
+                        } else {
+                            echo '<a href="payment.php" class="nav-link">
+                            <svg width="18" height="18" viewBox="0 0 42 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: -7px;">
+                                <path d="M21.0794 2C14.6794 2 14.0794 8.33333 14.5794 11.5H27.5796C28.0795 8.33333 27.4794 2 21.0794 2Z" stroke="#805146" stroke-width="3"/>
+                                <path d="M7.0798 12H33.5798C44.78 12 39.2464 16.3333 35.0796 18.5V29.5C35.0796 36 33.0796 37 28.5796 37H11.5796C7.57959 36.2 6.91306 31.6667 7.0798 29.5V18.5C-2.1202 13.3 3.24646 12 7.0798 12Z" stroke="#805146" stroke-width="3"/>
+                                <rect x="13.0796" y="18.5" width="4" height="4" fill="#805146"/>
+                                <rect x="25.0796" y="18.5" width="4" height="4" fill="#805146"/>
+                            </svg>
+                        </a>';
+                        }
+                    ?>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-user-circle" style="color: #805146; font-size: 18px;"></i>
@@ -147,13 +160,19 @@ $result_items = mysqli_query($con, $sql_items);
                             <?php while($data_items = mysqli_fetch_array($result_items)) {
                                 $image = $data_items['item_file'] ?>
                                 <div class="card lipstick-card border-0 rounded-0 px-0 my-2 mx-2">
-                                    <div class="img-product-all-products">
-                                        <img src="../admin/post/items/upload/<?= $image ?>" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="card-body bg-card-body-1 text-center pt-3 pb-0">
-                                        <div class="card-title product-text-title-1"><?php echo $data_items['item_name'] ?></div>
-                                    </div>
-                                    <a href="#" class="btn btn-product-2 rounded-0 btn-block">Add To Bag - Rp145.000</a>
+                                    <a href="moreinfo-lipglow.php?product_name=<?php echo $data_items['item_name'] ?>" class="text-decoration-none">
+                                        <div class="img-product-all-products">
+                                            <img src="../admin/post/items/upload/<?= $image ?>" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="card-body px-1 bg-card-body-1">
+                                            <hr>
+                                        </div>
+                                        <div class="card-body px-3 py-2 bg-card-body-1">
+                                            <h3 class="card-title product-text-title-1 pt-1"><?php echo $data_items['item_name'] ?></h3>
+                                            <div class="product-text-exp-1"><?php echo $data_items['item_subname'] ?></div>
+                                            <div class="product-text-price mt-2 pb-1"><b>Rp <?php echo number_format($data_items['item_price']) ?></b></div>
+                                        </div>
+                                    </a>
                                 </div>
 
                             <?php } ?>

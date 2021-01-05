@@ -14,8 +14,22 @@ if (!$con) {
 }
 
 $name = $_SESSION["user"]["name"];
-$sql_items = "SELECT * FROM transaksi WHERE username='$name'";
+$sql_items = "SELECT * FROM transaksi WHERE username='$name' ORDER BY id ASC";
 $result_items = mysqli_query($con, $sql_items);
+
+if(!empty($_GET["action"])) {
+    switch($_GET["action"]) {
+        case "remove":
+            $del = "DELETE FROM transaksi WHERE id='".$_GET["user"]."'";
+            mysqli_query($con,$del) or die(mysqli_error($con));
+
+            echo '<script>
+            alert("Successfully remove item");
+            location="payment.php";
+            </script>';
+        break;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +64,7 @@ $result_items = mysqli_query($con, $sql_items);
             </div>
         </div>
     </div>
-    <div class="container mt-2 p-0">
+    <div class="container mt-2 mb-2 p-0">
         <div class="p-0 col-md-12">
             <div class="row">
                 <div class="col-md-8">
@@ -77,29 +91,32 @@ $result_items = mysqli_query($con, $sql_items);
                         </div>
                         <hr>
                         <div class="row justify-content-center">
-                            <table class="table-responsive" style="width: 350px;">
+                            <table class="table-responsive px-3">
                                 <tr>
-                                    <td class="font"><i class="fas fa-fw fa-store"></i> Store name</td>
+                                    <th class="font text-center" style="width: 80px;">Item pict</th>
+                                    <th class="font text-center" style="width: 200px;">Item name</th>
+                                    <th class="font text-center" style="width: 150px;">Unit price</th>
+                                    <th class="font text-center" style="width: 50px;">Qty</th>
+                                    <th class="font text-center" style="width: 150px;">Subtotals</th>
+                                    <th class="font text-center" style="width: 100px;">Action</th>
                                 </tr>
-                            <?php while($data_items = mysqli_fetch_array($result_items)) { ?>
+                            <?php while($data_items = mysqli_fetch_array($result_items)) { 
+                                $itemprice = $data_items['item_price'];
+                                ?>
                                 <tr>
-                                    <td><img src="../admin/post/items/upload/<?php echo $data_items['item_img'] ?>" width="50px" alt=""></td>
-                                    <td class="font" style="font-size: 12px !important;"><?php echo $data_items["item_name"] ?></td>
+                                    <td class="text-center"><img src="../admin/post/items/upload/<?php echo $data_items['item_img'] ?>" width="50px" alt=""></td>
+                                    <td class="font text-center" style="font-size: 12px !important;"><?php echo $data_items["item_name"] ?></td>
+                                    <td class="font text-center"><?php echo number_format($data_items['item_price']) ?></td>
+                                    <td class="font text-center"><?php echo $data_items['item_qty'] ?></td>
+                                    <td class="font text-center"><?php echo number_format($data_items['total_price']) ?></td>
+                                    <td class="font text-center">
+                                        <a class="font" href="payment.php?action=remove&user=<?php echo $data_items['id'] ?>">
+                                            <i class="fas fa-fw fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
+                            <?php } ?>
                             </table>
-                            <table class="table-responsive" style="width: 350px;">
-                                <tr>
-                                    <td class="font text-center" style="width: 150px;">Unit price</td>
-                                    <td class="font text-center" style="width: 50px;">Qty</td>
-                                    <td class="font text-center" style="width: 150px;">Subtotals</td>
-                                </tr>
-                                <tr>
-                                    <td class="font text-center" style="padding-top: 20px;"><?php echo number_format($data_items['item_price']) ?></td>
-                                    <td class="font text-center" style="padding-top: 20px;"><?php echo $data_items['item_qty'] ?></td>
-                                    <td class="font text-center" style="padding-top: 20px;"><?php echo number_format($data_items['total_price']) ?></td>
-                                </tr>
-                            </table>
-
                         </div>
                     </div>
                 </div>
@@ -112,54 +129,10 @@ $result_items = mysqli_query($con, $sql_items);
                         </div>
                         <hr>
                         <div class="form-group">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                            Launch static backdrop modal
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <select name="selectedOngkir" class="form-control">
-                                <option value="0" selected>Choose delivery service</option>
-                                <option value="1">JNE Express</option>
-                                <option value="2">J&T Express</option>
-                                <option value="3">Si Cepat</option>
-                            </select>
+                            <div class="font">JNE Express</div>
                         </div>
                         <?php 
-                        $ongkir = 0;
-                        // switch($selectedOngkir) {
-                        //     case '0':
-                        //         $ongkir = 0;
-                        //         break;
-                        //     case '1':
-                        //         $ongkir = 14000;
-                        //         break;
-                        //     case '2':
-                        //         $ongkir = 15000;
-                        //         break;
-                        //     case '3':
-                        //         $ongkir = 16000;
-                        //         break;
-                        // }
+                        $ongkir = 14000;
                         ?>
                         <div class="d-flex justify-content-between">
                             <div class="font">Total : </div>
@@ -173,12 +146,8 @@ $result_items = mysqli_query($con, $sql_items);
                         </div>
                         <hr>
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option value="1" selected>Choose payment method</option>
-                                <option value="1">Bank transfer</option>
-                                <option value="1">Paypal</option>
-                                <option value="1">e-Money</option>
-                            </select>
+                            <div class="font">Bank Transfer</div>
+                            <div class="font">No. rek : 90003129200</div>
                         </div>
                     </div>
                     <div class="col p-3 total-section my-2">
@@ -191,21 +160,25 @@ $result_items = mysqli_query($con, $sql_items);
                             <div class="font">Total shipping cost : </div>
                             <div class="font">Rp <?php echo number_format($ongkir) ?></div>
                         </div>
-                        <div class="d-flex my-2 justify-content-between">
-                            <div class="font">Subtotal for product : </div>
-                            <div class="font">Rp <?php echo number_format($data_items['total_price']) ?></div>
-                        </div>
                         <?php
-                        $grand_total = $ongkir + $data_items['item_price'];
+                        $query_sum_qty = "SELECT SUM(item_qty) FROM transaksi WHERE username='$name'";
+                        $result = mysqli_query($con, $query_sum_qty);
+                        while($row = mysqli_fetch_array($result)){
+                            $grand_subtotal = $itemprice * $row['SUM(item_qty)'];
+                            $grand_total = $ongkir + ($itemprice * $row['SUM(item_qty)']);
+                        }
                         ?>
                         <div class="d-flex my-2 justify-content-between">
-                            <div class="font">Total payment : </div>
-                            <div class="font">Rp <?php echo number_format($grand_total) ?></div>
+                            <div class="font">Subtotal for product : </div>
+                            <div class="font">Rp <?php echo number_format($grand_subtotal) ?></div>
+                            </div>
+                        <div class="d-flex my-2 justify-content-between">
+                        <div class="font">Total payment : </div>
+                        <div class="font">Rp <?php echo number_format($grand_total) ?></div>
                         </div>
                         <hr>
                         <a href="#" class="btn btn-order btn-block rounded-0">Make Order</a>
                     </div>
-                <?php } ?>
                 </div>
             </div>
         </div>
