@@ -17,6 +17,9 @@ $name = $_SESSION["user"]["name"];
 $sql_items = "SELECT * FROM transaksi WHERE username='$name' ORDER BY id ASC";
 $result_items = mysqli_query($con, $sql_items);
 
+$sql_address = "SELECT * FROM dbaddress WHERE username='$name' ORDER BY id DESC LIMIT 1";
+$result_address = mysqli_query($con, $sql_address);
+
 $ongkir = 0;
 $kurir = 'Choose your delivery Services';
 
@@ -45,7 +48,27 @@ if(!empty($_GET["action"])) {
                 $ongkir = 15000;
                 $kurir = 'SiCepat Express';
             }
+        break;
     }
+}
+
+if(isset($_POST['but_upload'])) {
+    $username = $_SESSION["user"]["name"];
+    $phone = $_POST['phone'];
+    $fullname = $_POST['fullname'];
+    $provinsi = $_POST['provinsi'];
+    $kabupaten = $_POST['kabupaten'];
+    $kecamatan = $_POST['kecamatan'];
+    $kodepos = $_POST['kodepos'];
+    $alamat = $_POST['alamat'];
+
+    $query = "insert into dbaddress(username,phone,fullname,provinsi,kabupaten,kecamatan,kodepos,alamat) values('".$username."','".$phone."','".$fullname."','".$provinsi."','".$kabupaten."','".$kecamatan."','".$kodepos."','".$alamat."')";
+
+    mysqli_query($con,$query) or die(mysqli_error($con));
+    echo '<script>
+    location="payment.php";
+    </script>';
+
 }
 
 ?>
@@ -59,7 +82,7 @@ if(!empty($_GET["action"])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/sb-admin.css">
     <link rel="stylesheet" href="../assets/slick/slick.css">
     <link rel="stylesheet" href="../assets/slick/slick-theme.css"/>
@@ -93,12 +116,68 @@ if(!empty($_GET["action"])) {
                         <hr>
                         <div class="mt-2">
                             <table class="table-responsive">
+                            <?php if(mysqli_num_rows($result_address) < 0) { ?>
                                 <tr>
-                                    <td class="text-dark" style="width: 200px;">Person name</td>
-                                    <td class="text-dark" style="width: 450px;">Person address, lorem ipsum dolor sit amet, consectetuer adipiscing elit</td>
-                                    <td class="text-dark text-center" style="width: 100px;"><a class="btn-change-address" href="#">Change</a></td>
+                                    <td class="text-dark" style="width: 200px;">Name, Phone number</td>
+                                    <td class="text-dark" style="width: 450px;">Address & Postal code</td>
+                                    <td class="text-dark text-center" style="width: 100px;"><a href="#" class="btn-change-address" data-toggle="modal" data-target="#staticBackdrop">Change</a></td>
                                 </tr>
+                            <?php } else { ?>
+                                <?php while($data_address = mysqli_fetch_array($result_address)) { ?>
+                                    <tr>
+                                        <td class="text-dark" style="width: 200px;"><?php echo $data_address['fullname'] ?>, <?php echo $data_address['phone'] ?></td>
+                                        <td class="text-dark" style="width: 450px;"><?php echo $data_address['alamat'] ?> - <?php echo $data_address['kabupaten'] ?>, <?php echo $data_address['kecamatan'] ?>, <?php echo $data_address['provinsi'] ?>, <?php echo $data_address['kodepos'] ?></td>
+                                        <td class="text-dark text-center" style="width: 100px;"><a href="#" class="btn-change-address" data-toggle="modal" data-target="#staticBackdrop">Change</a></td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } ?>
                             </table>
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-md modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title font-modal" id="staticBackdropLabel">Your shipping address</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="post" autocomplete="off">
+                                                <div class="form-group">
+                                                    <label>Phone number</label>
+                                                    <input type="number" name="phone" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Fullname</label>
+                                                    <input type="text" name="fullname" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Provinsi</label>
+                                                    <input type="text" name="provinsi" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Kabupaten</label>
+                                                    <input type="text" name="kabupaten" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Kecamatan</label>
+                                                    <input type="text" name="kecamatan" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Kode pos</label>
+                                                    <input type="number" name="kodepos" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Alamat</label><br>
+                                                    <textarea name="alamat" style="width: 100% !important;" required></textarea>
+                                                </div>
+                                                <input class="btn btn-order float-right rounded-0 mt-3" type='submit' value='Submit' name='but_upload'>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col p-3 item-section my-2">
@@ -146,7 +225,6 @@ if(!empty($_GET["action"])) {
                         </div>
                         <hr>
                         <div class="form-group">
-                        
                             <div class="dropdown no-arrow">
                                 <a class="form-control dropdown-toggle text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo $kurir ?>
@@ -160,13 +238,6 @@ if(!empty($_GET["action"])) {
                                     <a class="dropdown-item" href="payment.php?action=ongkir&cour=SCPT">SiCepat Express => Rp 15.000</a>
                                 </div>
                             </div>
-                                <!-- <select class="form-control">
-                                    <a href="payment.php?action=chooseOngkir">JNE Express RP 16000</a>
-                                    <option><a href="payment.php?action=chooseOngkir">JNE Express RP 16000</a></option>
-                                    <option>J&T Express RP 14000</option>
-                                    <option>Si Cepat RP 15000</option>
-                                </select> -->
-                            <!-- <div class="font">JNE Express</div> -->
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="font">Total : </div>
